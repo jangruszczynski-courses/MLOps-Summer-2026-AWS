@@ -1,0 +1,37 @@
+[project]
+name = "host"
+version = "0.1.0"
+description = "NVIDIA Triton Inference Server demo – image classification via gRPC"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "onnx>=1.21.0",
+    "onnxscript>=0.6.2",
+    "timm>=1.0.26",
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+    "tritonclient[grpc]>=2.67.0",
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu" },
+]
+torchvision = [
+  { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+    # Model export
+    #"timm>=1.0.0",
+    #"torch>=2.3.0",
+    #"onnx>=1.16.0",
+    # Triton client
+    #"tritonclient[grpc]>=2.47.0",
+    # Image handling / preprocessing
+    #"pillow>=10.0.0",
+    #"numpy>=1.26.0",

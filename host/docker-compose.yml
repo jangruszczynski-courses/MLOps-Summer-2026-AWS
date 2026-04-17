@@ -1,0 +1,22 @@
+services:
+  triton:
+    image: nvcr.io/nvidia/tritonserver:25.12-py3
+    ports:
+      - "8000:8000"   # HTTP REST
+      - "8001:8001"   # gRPC  ← used by client.py
+      - "8002:8002"   # Prometheus metrics
+    volumes:
+      - ./model_repository:/models
+    command: tritonserver --model-repository=/models
+    # ── GPU access ────────────────────────────────────────────────────────────
+    # Uncomment the block below when running on a machine with NVIDIA GPU(s).
+    # Requires the NVIDIA Container Toolkit to be installed on the host.
+    #
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1          # set to "all" to expose every GPU
+    #           capabilities: [gpu]
+    # ─────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,3 @@
+# boto3 is already included in the Lambda runtime, but pinning it here
+# ensures the version inside the container matches what you tested locally.
+boto3
